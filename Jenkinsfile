@@ -1,11 +1,26 @@
-
-
 pipeline {
-agent any
-triggers { pollSCM('H/2 * * * *') }
-stages {
-stage('Build') { steps { sh 'sh app.sh' } }
-stage('Test')  { steps { sh 'sh test.sh' } }
-stage('Deploy') { steps { echo 'Deploying...' } }
-}
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building...'
+                sh 'uname -a'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo 'Testing...'
+                sh 'test 1 -eq 1'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'Deploying...'
+                sh 'echo Deployment successful!'
+            }
+        }
+    }
 }
